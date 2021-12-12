@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using HtmlAgilityPack;
 
 namespace Rewriter.ContentControllers
 {
@@ -19,7 +20,7 @@ namespace Rewriter.ContentControllers
                     dataList.Add(line);
                 }
             }
-
+            
             return dataList;
         }
 
@@ -31,6 +32,16 @@ namespace Rewriter.ContentControllers
                 {
                     sr.WriteLine(str);
                 }
+            }
+        }
+
+        public void WriteFile(string writePath, HtmlNode node)
+        {
+            using (StreamWriter sr = new StreamWriter(writePath, true, System.Text.Encoding.Default))
+            {
+                
+                sr.WriteLine(node.InnerText);
+
             }
         }
 
